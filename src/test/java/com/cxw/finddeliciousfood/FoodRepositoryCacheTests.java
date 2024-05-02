@@ -66,18 +66,20 @@ class FoodRepositoryCacheTests {
     void checkEviction() {
         var foodEntity = new FoodInfoEntity();
 //        foodEntity.setId(UUID.randomUUID().toString());
-        foodEntity.setLocationid("123435hger");
+        var locationId = "123435hger";
+        foodEntity.setLocationid(locationId);
         FoodInfoEntity foodInfoEntity = foodInfoService.saveCacheable(foodEntity);
         assertThat(foodInfoService.getCacheable(foodInfoEntity.getId())).isEqualTo(foodEntity);
         Cache cxwCache = cacheManager.getCache("cxwCache");
-        assertThat(cxwCache.get(foodInfoEntity.getLocationid())).isNull();
+        assertThat(cxwCache.get(locationId)).isNull();
     }
 
     @Test
     void checkCacheable() {
-        PageResult<FoodInfoModel> foodModelPage = foodInfoService.getFavoriteFood("embarcadero", PageRequest.of(0, 20));
+        var cacheKey = "embarcadero";
+        PageResult<FoodInfoModel> foodModelPage = foodInfoService.getFavoriteFood(cacheKey, PageRequest.of(0, 20));
         Cache cache1 = cacheManager.getCache("cache1");
-        assertThat(cache1.get("embarcadero")).isNotNull();
+        assertThat(cache1.get(cacheKey)).isNotNull();
     }
 
 }

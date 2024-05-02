@@ -79,7 +79,7 @@ public class CsvLoader implements ApplicationRunner {
         reader.open(new ExecutionContext());
 
         List<FoodInfoEntity> foodInfoEntities = new ArrayList<>();
-        FoodInfoEntity foodInfoEntity = null;
+        FoodInfoEntity foodInfoEntity;
 
         do {
 

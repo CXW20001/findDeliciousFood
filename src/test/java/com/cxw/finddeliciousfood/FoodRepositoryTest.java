@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.data.domain.ExampleMatcher.matching;
 
 @DataJpaTest
-class foodRepositoryTest {
+class FoodRepositoryTest {
 
     @Autowired
     FoodRepository foodRepository;
